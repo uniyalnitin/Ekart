@@ -139,11 +139,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-STRIPE_PUBLIC_KEY = 'pk_test_ccSmOiyB8K52VBgl1QMKlmqH008xdoKRqV'
-STRIPE_SECRET_KEY = 'sk_test_m3sIBPBp8KmVPSO4MJOtyG0w00UmyM2LUM'
-WEBHOOK_SECRET = 'whsec_79ufMhJWzsfKPmQuJ52ZCDc9DswZboku'
+STRIPE_PUBLIC_KEY = ''
+STRIPE_SECRET_KEY = ''
+WEBHOOK_SECRET = ''
 
-GOOGLE_API_KEY = 'AIzaSyDntpl0oE6Ir-AT8QMVfGGFGd7eH4C9BJc'
+GOOGLE_API_KEY = ''
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
