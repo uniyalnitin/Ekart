@@ -1,0 +1,2 @@
+Django E-Commerce Application, with Stripe Payment Integration.
+setup- Please create account in stripe.com, obtain you test secret, publishable key and webhook keys. Configure them in  settings and payment.html page

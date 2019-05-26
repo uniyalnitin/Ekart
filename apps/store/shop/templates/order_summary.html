@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main>
+    <div class="container">
+
+    <div class="table-responsive text-nowrap">
+    <h2>Order Summary</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Item Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cart_item in cart.get_items %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ cart_item.title }}</td>
+            <td>{{ cart_item.price }}</td>
+            <td>
+                <a href="{% url 'store:decrease_cart_product_quantity' cart_item.product_instance.id %}"><i class="fas fa-minus mr-2"></i></a>
+                {{ cart_item.quantity }}
+                <a href="{% url 'store:add-to-cart' cart_item.product_instance.id %}"><i class="fas fa-plus ml-2"></i></a>
+            </td>
+            <td>
+            {% if cart_item.discount_price %}
+                ${{ cart_item.discount_price }}
+            {% endif %}
+            <a style='color: red;' href="{% url 'store:remove-from-cart' cart_item.product_instance.id %}">
+                <i class="fas fa-trash float-right"></i>
+            </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan='5'>Your cart is empty</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-primary float-right' href="{% url 'product_manager:list' %}">Continue shopping</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% if cart.coupon %}
+        <tr>
+            <td colspan="4"><b>Coupon</b></td>
+            <td><b>-${{ cart.coupon.amount }}</b></td>
+        </tr>
+        {% endif %}
+        {% if cart.calculate_net %}
+        <tr>
+            <td colspan="4"><b>Order Total</b></td>
+            <td><b>${{ cart.calculate_net}}</b></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-warning float-right ml-2' href="{% url 'store:checkout' %}">Proceed to checkout</a>
+            <a class='btn btn-primary float-right' href="{% url 'product_manager:list' %}">Continue shopping</a>
+            </td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+
